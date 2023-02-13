@@ -1,0 +1,41 @@
+<div *ngIf="isLoggedIn; else login">
+    <h1>Admin Page</h1>
+    <p>Welcome, {{ username }}!</p>
+    <hr>
+    <h3>Product List</h3>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let element">
+          <img [src]="element.image" [alt]="element.name">
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+      </ng-container>
+  
+      <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
+    </table>
+  
+    <!-- <button mat-raised-button (click)="addProduct()">Add Product</button>
+    <button mat-raised-button (click)="removeProduct()">Remove Product</button> -->
+  </div>
+<ng-template #login>
+    <h1>Login</h1>
+    <p>Please enter your username and password:</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="username" type="text" placeholder="Username">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="password" type="password" placeholder="Password">
+    </mat-form-field>
+    <button mat-raised-button (click)="loginPage()">Login</button>
+  </ng-template>
